@@ -12,7 +12,7 @@ public class addgui {
         addition obj = new addition();
     }
 }
-class addition extends JFrame implements ActionListener{
+class addition extends JFrame {
     JTextField t1,t2;
     JButton b ;
     JLabel l;
@@ -27,18 +27,22 @@ class addition extends JFrame implements ActionListener{
         add(t2);
         add(b);
         add(l);
-        b.addActionListener(this);//Actionlistner is an inteface 
+
+        ActionListener al = new ActionListener() {
+            public void actionPerformed(ActionEvent ae){
+                int num1= Integer.parseInt(t1.getText());//integer.parsint converets string value to integer
+                int num2=Integer.parseInt(t2.getText());
+                int value = num1 + num2;
+                l.setText(value + "");//any interger output + "" is a string output
+        
+            }
+        };
+        b.addActionListener(al);//Actionlistner is an inteface 
        
         setLayout(new FlowLayout());
         setVisible(true);
         setSize(400,400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    public void actionPerformed(ActionEvent ae){
-        int num1= Integer.parseInt(t1.getText());//integer.parsint converets string value to integer
-        int num2=Integer.parseInt(t2.getText());
-        int value = num1 + num2;
-        l.setText(value + "");//any interger output + "" is a string output
-
-    }
+    
 }
